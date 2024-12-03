@@ -1,5 +1,5 @@
-import CloseIcon from '@mui/icons-material/Close';
-import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import CloseIcon from "@mui/icons-material/Close";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import {
 	Drawer,
 	IconButton,
@@ -9,30 +9,30 @@ import {
 	ListItemIcon,
 	ListItemText,
 	Typography
-} from '@mui/material';
-import Box from '@mui/material/Box';
-import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import NavLinks from '../../constant';
+} from "@mui/material";
+import Box from "@mui/material/Box";
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import NavLinks from "../../constant";
 
 const MobileSidebar = () => {
 	const [open, setOpen] = useState(false);
 
 	return (
 		<>
-			<Drawer anchor='left' open={open} onClose={() => setOpen(false)} PaperProps={{ sx: { width: '80vw' } }}>
-				<Box sx={{ display: 'flex', justifyContent: 'space-around', p: 1 }}>
+			<Drawer anchor='left' open={open} onClose={() => setOpen(false)} PaperProps={{ sx: { width: "80vw" } }}>
+				<Box sx={{ display: "flex", justifyContent: "space-around", p: 1 }}>
 					<Typography
 						component={Link}
 						to='/'
 						sx={{
-							display: 'flex',
-							justifyContent: 'space-between',
-							alignItems: 'center',
-							gap: '8px',
-							textDecoration: 'none',
-							fontSize: '2rem',
-							fontWeight: 'bold'
+							display: "flex",
+							justifyContent: "space-between",
+							alignItems: "center",
+							gap: "8px",
+							textDecoration: "none",
+							fontSize: "2rem",
+							fontWeight: "bold"
 						}}
 					>
 						KK
@@ -49,11 +49,11 @@ const MobileSidebar = () => {
 								to={link.link}
 								sx={{
 									minHeight: 54,
-									justifyContent: 'initial',
+									justifyContent: "initial",
 									px: 4,
-									display: 'flex',
-									'&:hover': {
-										bgcolor: '#f1f1f1'
+									display: "flex",
+									"&:hover": {
+										bgcolor: "#f1f1f1"
 									}
 								}}
 							>
