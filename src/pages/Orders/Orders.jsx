@@ -66,7 +66,7 @@ const Orders = () => {
 			</Stack>
 
 			{/* Table Container */}
-			<TableContainer component={Paper} sx={{ my: 3, borderRadius: 5 }}>
+			<TableContainer component={Paper} sx={{ my: 3, borderRadius: 1 }}>
 				<Table sx={{ minWidth: 650 }} aria-label='orders table' size='medium'>
 					<TableHead>
 						<TableRow>

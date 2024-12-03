@@ -69,7 +69,7 @@ const Users = () => {
 				/>
 			</Stack>
 
-			<TableContainer component={Paper} sx={{ my: 3, borderRadius: 5 }}>
+			<TableContainer component={Paper} sx={{ my: 3, borderRadius: 1 }}>
 				<Table sx={{ minWidth: 650 }} size='medium' aria-label='User Management Table'>
 					<TableHead>
 						<TableRow>
