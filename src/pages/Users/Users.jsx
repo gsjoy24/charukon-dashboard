@@ -74,7 +74,7 @@ const Users = () => {
 					<TableHead>
 						<TableRow>
 							{tableHeadings.map((heading) => (
-								<TableCell key={heading} align='center' sx={{ fontSize: "16px", fontWeight: "bold" }}>
+								<TableCell key={heading} align='center' sx={{ fontSize: "16px" }}>
 									{heading}
 								</TableCell>
 							))}
