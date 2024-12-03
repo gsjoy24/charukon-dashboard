@@ -1,34 +1,40 @@
-import BorderAllIcon from '@mui/icons-material/BorderAll';
-import CategoryIcon from '@mui/icons-material/Category';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import PeopleIcon from '@mui/icons-material/People';
-import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import BorderAllIcon from "@mui/icons-material/BorderAll";
+import CategoryIcon from "@mui/icons-material/Category";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import PeopleIcon from "@mui/icons-material/People";
+import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
+import ViewAgendaIcon from "@mui/icons-material/ViewAgenda";
 
 const NavLinks = [
 	{
-		title: 'Dashboard',
+		title: "Dashboard",
 		icon: <DashboardIcon />,
-		link: '/'
+		link: "/"
 	},
 	{
-		title: 'Users',
+		title: "Banners",
+		icon: <ViewAgendaIcon />,
+		link: "/banners"
+	},
+	{
+		title: "Users",
 		icon: <PeopleIcon />,
-		link: '/users'
+		link: "/users"
 	},
 	{
-		title: 'Orders',
+		title: "Orders",
 		icon: <BorderAllIcon />,
-		link: '/orders'
+		link: "/orders"
 	},
 	{
-		title: 'Products',
+		title: "Products",
 		icon: <ProductionQuantityLimitsIcon />,
-		link: '/products'
+		link: "/products"
 	},
 	{
-		title: 'Categories',
+		title: "Categories",
 		icon: <CategoryIcon />,
-		link: '/categories'
+		link: "/categories"
 	}
 ];
 

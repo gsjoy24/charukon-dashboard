@@ -1,51 +1,56 @@
-import { createBrowserRouter } from 'react-router-dom';
-import App from '../App';
-import AddProduct from '../pages/AddProduct/AddProduct';
-import Categories from '../pages/Category/Categories';
-import DashboardManagement from '../pages/Dashboard/DashboardManagement';
-import Login from '../pages/Login/Login';
-import Orders from '../pages/Orders/Orders';
-import Products from '../pages/Products/Products';
-import UpdateProduct from '../pages/UpdateProduct/UpdateProduct';
-import Users from '../pages/Users/Users';
+import { createBrowserRouter } from "react-router-dom";
+import App from "../App";
+import AddProduct from "../pages/AddProduct/AddProduct";
+import BannerManagement from "../pages/Banner/Banner";
+import Categories from "../pages/Category/Categories";
+import DashboardManagement from "../pages/Dashboard/DashboardManagement";
+import Login from "../pages/Login/Login";
+import Orders from "../pages/Orders/Orders";
+import Products from "../pages/Products/Products";
+import UpdateProduct from "../pages/UpdateProduct/UpdateProduct";
+import Users from "../pages/Users/Users";
 
 const router = createBrowserRouter([
 	{
-		path: '/',
+		path: "/",
 		element: <App />,
 		children: [
 			{
-				path: '/',
+				path: "/",
 				element: <DashboardManagement />
 			},
 			{
-				path: '/add-product',
-				element: <AddProduct />
+				path: "/banners",
+				element: <BannerManagement />
 			},
 			{
-				path: '/update-product',
-				element: <UpdateProduct />
-			},
-			{
-				path: '/products',
+				path: "/products",
 				element: <Products />
 			},
 			{
-				path: '/categories',
+				path: "/add-product",
+				element: <AddProduct />
+			},
+			{
+				path: "/update-product",
+				element: <UpdateProduct />
+			},
+			{
+				path: "/categories",
 				element: <Categories />
 			},
 			{
-				path: 'users',
+				path: "users",
 				element: <Users />
 			},
 			{
-				path: 'orders',
+				path: "orders",
 				element: <Orders />
 			}
 		]
 	},
 	{
-		path: '/login',
+		path: "/login",
 		element: <Login />
 	}
 ]);

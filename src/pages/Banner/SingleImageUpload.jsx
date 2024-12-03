@@ -7,84 +7,72 @@ import { toast } from "sonner";
 import { useAddBannerMutation } from "../../redux/features/bannerApi,";
 
 const SingleImageUpload = () => {
-  const [isUploading, setIsUploading] = useState(false); // Track the uploading state
-  const [error, setError] = useState(null); // Track upload errors
-  const [addBanner] = useAddBannerMutation();
+	const [isUploading, setIsUploading] = useState(false); // Track the uploading state
+	const [error, setError] = useState(null); // Track upload errors
+	const [addBanner] = useAddBannerMutation();
 
-  const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
-  const UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_PRESET_NAME;
+	const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+	const UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 
-  const handleImageChange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return setError("Please select an image to upload.");
+	const handleImageChange = async (e) => {
+		const file = e.target.files[0];
+		if (!file) return setError("Please select an image to upload.");
 
-    setError(null);
-    setIsUploading(true);
+		setError(null);
+		setIsUploading(true);
 
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", UPLOAD_PRESET);
+		try {
+			const formData = new FormData();
+			formData.append("file", file);
+			formData.append("upload_preset", UPLOAD_PRESET);
 
-      const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-        formData,
-      );
+			const response = await axios.post(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, formData);
+			console.log({ response });
 
-      const { public_id, secure_url } = response.data;
+			const { public_id, secure_url } = response.data;
+			console.log({ public_id, secure_url });
 
-      const newBanner = {
-        url: secure_url,
-        public_id,
-      };
+			const newBanner = {
+				url: secure_url,
+				public_id
+			};
 
-      const bannerRes = await addBanner(newBanner).unwrap();
-      if (bannerRes?.success) {
-        toast.success("Banner uploaded successfully.");
-      } else {
-        toast.error(bannerRes?.message || "Something went wrong");
-      }
-    } catch (err) {
-      console.error("Error uploading image:", err);
-      setError("Failed to upload the image.");
-    } finally {
-      setIsUploading(false);
-    }
-  };
+			const bannerRes = await addBanner(newBanner).unwrap();
+			if (bannerRes?.success) {
+				toast.success("Banner uploaded successfully.");
+			} else {
+				toast.error(bannerRes?.message || "Something went wrong");
+			}
+		} catch (err) {
+			console.error("Error uploading image:", err);
+			setError("Failed to upload the image.");
+		} finally {
+			setIsUploading(false);
+		}
+	};
 
-  return (
-    <Box sx={{ position: "relative" }}>
-      <Box sx={{ textAlign: "center", py: 3 }}>
-        <Button
-          variant="contained"
-          component="label"
-          startIcon={
-            isUploading ? (
-              <CircularProgress size={16} color="inherit" />
-            ) : (
-              <CloudUpload />
-            )
-          }
-          disabled={isUploading}
-          sx={{ mt: 2 }}
-        >
-          {isUploading ? "Uploading..." : "Upload Banner"}
-          <input
-            type="file"
-            hidden
-            accept="image/*"
-            onChange={handleImageChange}
-          />
-        </Button>
+	return (
+		<Box sx={{ position: "relative" }}>
+			<Box sx={{ textAlign: "center", py: 3 }}>
+				<Button
+					variant='contained'
+					component='label'
+					startIcon={isUploading ? <CircularProgress size={16} color='inherit' /> : <CloudUpload />}
+					disabled={isUploading}
+					sx={{ mt: 2 }}
+				>
+					{isUploading ? "Uploading..." : "Upload Banner"}
+					<input type='file' hidden accept='image/*' onChange={handleImageChange} />
+				</Button>
 
-        {error && (
-          <Typography color="error" sx={{ mt: 2 }}>
-            {error}
-          </Typography>
-        )}
-      </Box>
-    </Box>
-  );
+				{error && (
+					<Typography color='error' sx={{ mt: 2 }}>
+						{error}
+					</Typography>
+				)}
+			</Box>
+		</Box>
+	);
 };
 
 export default SingleImageUpload;
