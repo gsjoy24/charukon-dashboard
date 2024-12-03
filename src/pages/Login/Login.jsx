@@ -62,7 +62,7 @@ const Login = () => {
 						style={{ cursor: "pointer", textDecoration: "none", display: "flex", justifyContent: "center" }}
 					>
 						<Typography variant='h4' color='primary' gutterBottom>
-							charukon Dashboard
+							Charukon Dashboard
 						</Typography>
 					</Link>
 					<Typography variant='h5' textAlign='center' gutterBottom>
