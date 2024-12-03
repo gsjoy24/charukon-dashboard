@@ -30,7 +30,10 @@ const categoryApi = baseApi.injectEndpoints({
 				method: 'POST',
 				body: data
 			}),
-			invalidatesTags: [{ type: 'SubCategory', id: 'LIST' }]
+			invalidatesTags: [
+				{ type: 'Category', id: 'LIST' },
+				{ type: 'SubCategory', id: 'LIST' }
+			]
 		}),
 		updateCategory: builder.mutation({
 			query: ({ id, data }) => ({
@@ -60,7 +63,10 @@ const categoryApi = baseApi.injectEndpoints({
 				method: 'PUT',
 				body: data
 			}),
-			invalidatesTags: (result, error, { id }) => [{ type: 'SubCategory', id }]
+			invalidatesTags: (result, error, { id }) => [
+				{ type: 'SubCategory', id },
+				{ type: 'Category', id: 'LIST' }
+			]
 		})
 	})
 });

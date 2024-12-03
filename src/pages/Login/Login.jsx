@@ -1,15 +1,15 @@
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { Box, Button, Card, CardContent, IconButton, Link, TextField, Typography } from '@mui/material';
-import { Stack } from '@mui/system';
-import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
-import { useLoginMutation } from '../../redux/features/auth/authApi';
-import { selectCurrentUser, setUser } from '../../redux/features/auth/authSlice';
-import { verifyToken } from '../../utils/verifyToken';
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { Box, Button, Card, CardContent, IconButton, Link, TextField, Typography } from "@mui/material";
+import { Stack } from "@mui/system";
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { useLoginMutation } from "../../redux/features/auth/authApi";
+import { selectCurrentUser, setUser } from "../../redux/features/auth/authSlice";
+import { verifyToken } from "../../utils/verifyToken";
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -21,25 +21,25 @@ const Login = () => {
 
 	const handleLogoClick = () => {
 		if (user) {
-			navigate('/');
+			navigate("/");
 		} else {
-			navigate('/login');
+			navigate("/login");
 		}
 	};
 
 	const onSubmit = async (data) => {
-		const toastId = toast.loading('Logging in...');
+		const toastId = toast.loading("Logging in...");
 
 		try {
 			const res = await login(data).unwrap();
 			const user = verifyToken(res.data.accessToken);
 			dispatch(setUser({ user, token: res.data.accessToken }));
 			if (res?.success === true) {
-				toast.success('Logged in successfully', { id: toastId, duration: 2000 });
+				toast.success("Logged in successfully", { id: toastId, duration: 2000 });
 				navigate(`/`);
 			}
 		} catch (error) {
-			toast.error('Failed to login', {
+			toast.error("Failed to login", {
 				id: toastId,
 				duration: 2000
 			});
@@ -59,10 +59,10 @@ const Login = () => {
 				<CardContent>
 					<Link
 						onClick={handleLogoClick}
-						style={{ cursor: 'pointer', textDecoration: 'none', display: 'flex', justifyContent: 'center' }}
+						style={{ cursor: "pointer", textDecoration: "none", display: "flex", justifyContent: "center" }}
 					>
 						<Typography variant='h4' color='primary' gutterBottom>
-							Karukon Dashboard
+							charukon Dashboard
 						</Typography>
 					</Link>
 					<Typography variant='h5' textAlign='center' gutterBottom>
@@ -82,15 +82,15 @@ const Login = () => {
 							render={({ field }) => (
 								<Stack
 									sx={{
-										position: 'relative'
+										position: "relative"
 									}}
 								>
-									<TextField {...field} label='Password' type={showPass ? 'text' : 'password'} fullWidth required />
+									<TextField {...field} label='Password' type={showPass ? "text" : "password"} fullWidth required />
 									<IconButton
 										onClick={() => setShowPass(!showPass)}
 										sx={{
-											position: 'absolute',
-											top: '0.5rem',
+											position: "absolute",
+											top: "0.5rem",
 											right: 10
 										}}
 									>

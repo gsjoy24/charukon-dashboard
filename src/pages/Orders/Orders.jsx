@@ -11,21 +11,21 @@ import {
 	TableRow,
 	TextField,
 	Typography
-} from '@mui/material';
-import { Stack } from '@mui/system';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import PageTitle from '../../components/Shared/PageTitle';
-import { useGetOrdersQuery } from '../../redux/features/orderApi';
-import Customer from './Customer';
-import UpdateOrderStatus from './UpdateOrderStatus';
+} from "@mui/material";
+import { Stack } from "@mui/system";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import PageTitle from "../../components/Shared/PageTitle";
+import { useGetOrdersQuery } from "../../redux/features/orderApi";
+import Customer from "./Customer";
+import UpdateOrderStatus from "./UpdateOrderStatus";
 
-const tableHeadings = ['#', 'Order ID', 'Customer', 'Products Details', 'Total Price', 'Status'];
+const tableHeadings = ["#", "Order ID", "Customer", "Products Details", "Total Price", "Status"];
 
 const Orders = () => {
 	// State for pagination and search
 	const [page, setPage] = useState(1);
-	const [searchTerm, setSearchTerm] = useState('');
+	const [searchTerm, setSearchTerm] = useState("");
 	const { data, isFetching } = useGetOrdersQuery({ page, searchTerm });
 	const handlePageChange = (_, value) => {
 		setPage(value);
@@ -42,15 +42,15 @@ const Orders = () => {
 		<Box
 			sx={{
 				mt: 10,
-				width: { xs: '320px', sm: '700px', md: '100%', lg: '100%' },
-				mx: 'auto'
+				width: { xs: "320px", sm: "700px", md: "100%", lg: "100%" },
+				mx: "auto"
 			}}
 		>
 			<Stack
 				sx={{
-					justifyContent: 'space-between',
-					alignItems: 'center',
-					flexDirection: { xs: 'column', sm: 'row' },
+					justifyContent: "space-between",
+					alignItems: "center",
+					flexDirection: { xs: "column", sm: "row" },
 					gap: 2
 				}}
 			>
@@ -58,7 +58,7 @@ const Orders = () => {
 				{/* Search Field */}
 				<TextField
 					sx={{
-						maxWidth: '400px'
+						maxWidth: "400px"
 					}}
 					label='Search Orders'
 					variant='outlined'
@@ -73,7 +73,7 @@ const Orders = () => {
 						<TableHead>
 							<TableRow>
 								{tableHeadings.map((heading) => (
-									<TableCell key={heading} align='center' sx={{ fontSize: '20px', fontWeight: 'semibold' }}>
+									<TableCell key={heading} align='center' sx={{ fontSize: "20px", fontWeight: "semibold" }}>
 										{heading}
 									</TableCell>
 								))}
@@ -91,31 +91,31 @@ const Orders = () => {
 									<TableCell align='center'>
 										{order?.products?.map((product) => (
 											<Stack
-												justifyContent={'center'}
-												alignItems={'center'}
-												direction={'row'}
+												justifyContent={"center"}
+												alignItems={"center"}
+												direction={"row"}
 												gap={3}
 												sx={{
-													borderBottom: '1px solid #ccc',
-													width: 'fit-content',
-													margin: '1rem auto'
+													borderBottom: "1px solid #ccc",
+													width: "fit-content",
+													margin: "1rem auto"
 												}}
-												key={product.product._id}
+												key={product?.product?._id}
 											>
-												<Link target='_blank' to={`https://karukon.vercel.app/product/${product?.product?.slug}`}>
-													{product.product.name}
+												<Link target='_blank' to={`https://charukon.vercel.app/product/${product?.product?.slug}`}>
+													{product?.product?.name || "Product Name"}
 												</Link>
-												<Typography variant='caption' sx={{ display: 'block' }}>
-													{product?.quantity} x ৳ {product?.product?.last_price}
+												<Typography variant='caption' sx={{ display: "block" }}>
+													{product?.quantity || 0} x ৳ {product?.product?.last_price || 0}
 												</Typography>
 											</Stack>
 										))}
 									</TableCell>
-									<TableCell align='center'>৳ {order?.total_price}</TableCell>
+									<TableCell align='center'>৳ {order?.total_price || 0}</TableCell>
 									<TableCell
 										align='center'
 										sx={{
-											maxWidth: '100px'
+											maxWidth: "100px"
 										}}
 									>
 										<UpdateOrderStatus id={order?._id} defaultStatus={order?.status} />
@@ -130,7 +130,7 @@ const Orders = () => {
 			</TableContainer>
 			{/* Pagination Component */}
 			{data?.meta?.totalPages > 1 && (
-				<Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+				<Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
 					<Pagination count={data.meta.totalPages} page={page} onChange={handlePageChange} color='primary' />
 				</Box>
 			)}
